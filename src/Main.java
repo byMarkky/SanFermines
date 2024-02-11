@@ -1,5 +1,4 @@
 import java.io.File;
-import java.util.Arrays;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -7,18 +6,31 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws Exception{
 
-        /*
-        --- METODOS OBLIGATORIOS ---
-        TODO: Mostrar todos los datos de las carreras
-         */
-
         File file = new File("src/input.txt");
-        Scanner reader = new Scanner(file);
-        int nCarreras;
+        Scanner fileReader = new Scanner(file);
+
         Carrera[] carreras;
 
+        carreras = getData(fileReader);
+        fileReader.close();
+
+        // --- Mostrar velocidad maxima de una carrera
+        //System.out.println(carreras[0].getMaximaVelocidad());
+
+        // --- Mostrar heridos
+        //System.out.println(carreras[0].mostrarHeridos());
+
+        // --- Mostrar datos de una carrera
+        //Carrera.mostrarDatosCarrera(carreras[0]);
+
+        // --- Mostrar los datos de todas las carreras
+        //Carrera.mostrarDatosCarreras(carreras);
+
+    }
+    public static Carrera[] getData(Scanner reader) {
+        int nCarreras;
         nCarreras = Integer.parseInt(reader.nextLine());
-        carreras = new Carrera[nCarreras];
+        Carrera[] tmp = new Carrera[nCarreras];
 
         for (int i = 0; i < nCarreras; i++) {
             int nToros = Integer.parseInt(reader.next());
@@ -32,17 +44,10 @@ public class Main {
             int nCorredores = Integer.parseInt(reader.next());
             int nHeridos = Integer.parseInt(reader.next());
 
-            System.out.println(
-                    "Numero de toros: " + nToros +
-                    "\nVelocidades: " + Arrays.toString(velocidades) +
-                    "\nFecha: " + fecha +
-                    "\nCorredores: " + nCorredores +
-                    "\nHeridos: " + nHeridos
-            );
-
-            carreras[i] = new Carrera(nToros, velocidades, fecha, nCorredores, nHeridos);
+            tmp[i] = new Carrera(nToros, velocidades, fecha, nCorredores, nHeridos);
 
         }
-
+        return tmp;
     }
+
 }

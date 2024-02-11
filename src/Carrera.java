@@ -42,6 +42,43 @@ public class Carrera {
         this.nHeridos = nHeridos;
     }
 
+    public String mostrarHeridos() {
+        if (this.nHeridos <= 5) {
+            return this.nHeridos + " Pocos heridos";
+        } else if (this.nHeridos <= 10) {
+            return this.nHeridos + " Algunos heridos";
+        } else {
+            return this.nHeridos + " Muchos heridos";
+        }
+    }
+
+    // ### Obtener la velocidad maxima de una carrera ###
+    public int getMaximaVelocidad() {
+        int[] vels = this.velocidades;
+        Arrays.sort(vels);
+        return vels[vels.length - 1];
+    }
+
+    // Mostrar todos los datos de una carrera
+    public static void mostrarDatosCarrera(Carrera carrera) {
+        System.out.println("Numero de Toros: " + carrera.getnToros() +
+                "\nVelocidades: " + Arrays.toString(carrera.getVelocidades()) +
+                "\nFecha carrera: " + carrera.getFecha() +
+                "\nNumero de corredores: " + carrera.getCorredores() +
+                "\nNumero de heridos: " + carrera.getnHeridos() +
+                "\nVelocidad maxima de la carrera: " + carrera.getMaximaVelocidad());
+    }
+
+    public static void mostrarDatosCarreras(Carrera[] carreras) {
+        for (int i = 0; i < carreras.length; i++) {
+            System.out.println("-------------------");
+            Carrera.mostrarDatosCarrera(carreras[i]);
+        }
+        System.out.println("-------------------");
+    }
+
+    // Class Methods
+
     private LocalDate parseFecha(String fecha) throws ParseException {
         String[] data = fecha.split("-");
         int[] dataParsed = {
@@ -51,50 +88,27 @@ public class Carrera {
         return LocalDate.of(dataParsed[2], dataParsed[1], dataParsed[0]);
     }
 
-    public void mostrarHeridos() {
-        System.out.println("Heridos: " + this.nHeridos);
-    }
-
-    public int getMaximaVelocidad() {
-        int[] vels = this.velocidades;
-        int v_max = vels[vels.length - 1];
-        Arrays.sort(vels);
-        System.out.println("Velocidad maxima: " + v_max);
-        return v_max;
-    }
-
-    // Class Methods
-
     public int getnToros() {
         return nToros;
-    }
-
-    public void setnToros(int nToros) {
-        this.nToros = nToros;
     }
 
     public int[] getVelocidades() {
         return velocidades;
     }
 
-    public void setVelocidades(int[] velocidades) {
-        this.velocidades = velocidades;
-    }
-
     public int getCorredores() {
         return corredores;
     }
 
-    public void setCorredores(int corredores) {
-        this.corredores = corredores;
-    }
-
-    public int getnHeridos() {
-        return nHeridos;
-    }
-
-    public void setnHeridos(int nHeridos) {
-        this.nHeridos = nHeridos;
+    // ### Funcion para los heridos ###
+    public String getnHeridos() {
+        if (this.nHeridos <= 5) {
+            return this.nHeridos + " Pocos heridos";
+        } else if (this.nHeridos <= 10) {
+            return this.nHeridos + " Algunos heridos";
+        } else {
+            return this.nHeridos + " Muchos heridos";
+        }
     }
 
     public String toString() {
