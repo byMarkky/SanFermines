@@ -1,4 +1,6 @@
-import java.time.LocalDateTime;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Arrays;
 
 public class Carrera {
@@ -12,19 +14,41 @@ public class Carrera {
 
     private int nToros;
     private int[] velocidades;
-    private LocalDateTime fecha;
+    private LocalDate fecha;
     private String fechaString;
     private int corredores;
     private int nHeridos;
 
     Carrera() {}
 
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
     public Carrera(int nToros, int[] velocidades, String fecha, int corredores, int nHeridos) {
         this.nToros = nToros;
         this.velocidades = velocidades;
-        this.fechaString = fecha;
+        //this.fechaString = fecha;
+        try {
+            this.fecha = parseFecha(fecha);
+        } catch (ParseException pe) {
+            System.out.println(pe);
+        }
         this.corredores = corredores;
         this.nHeridos = nHeridos;
+    }
+
+    private LocalDate parseFecha(String fecha) throws ParseException {
+        String[] data = fecha.split("-");
+        int[] dataParsed = {
+                Integer.parseInt(data[0]),
+                Integer.parseInt(data[1]),
+                Integer.parseInt(data[2])};
+        return LocalDate.of(dataParsed[2], dataParsed[1], dataParsed[0]);
     }
 
     public void mostrarHeridos() {
@@ -55,14 +79,6 @@ public class Carrera {
 
     public void setVelocidades(int[] velocidades) {
         this.velocidades = velocidades;
-    }
-
-    public LocalDateTime getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDateTime fecha) {
-        this.fecha = fecha;
     }
 
     public int getCorredores() {
