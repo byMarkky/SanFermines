@@ -4,13 +4,6 @@ import java.time.LocalDate;
 import java.util.Arrays;
 
 public class Carrera {
-        /*
-        --- METODOS OBLIGATORIOS ---
-        Obtener y mostrar la velocidad maxima de una carrera
-        Mostra el mensaje de cuantos heridos hay
-        Mostrar todos los datos de una carrera
-        TODO: Mostrar todos los datos de las carreras
-         */
 
     private int nToros;
     private int[] velocidades;
